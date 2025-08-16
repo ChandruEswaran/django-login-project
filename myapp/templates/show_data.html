@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show_data</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+
+</head>
+<body>
+    <h2>Submitted Applications</h2>
+
+    {% csrf_token %}
+    
+    {% if messages %}
+    {% for message in messages %}
+      <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+
+<table border="1">
+    <tr>
+        <th>S.NO</th>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Place</th>
+        <th>Qualification</th>
+        <th>Experience</th>
+        <th>About You</th>
+    </tr>
+    {% for app in applications %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ app.name }}</td>
+    <td>{{ app.dob }}</td>
+    <td>{{ app.gender }}</td>
+    <td>{{ app.place }}</td>
+    <td>{{ app.qualification }}</td>
+    <td>{{ app.experience }}</td>
+    <td>{{ app.about_you }}</td>
+</tr>
+{% endfor %}
+    <tr>
+        <td colspan="8">Total Applications: {{ applications|length }}</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>app_form</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+
+</head>
+<body>
+    <form action="{% url 'apply' %}" method="post" id="appform">
+    <h2>Application Form</h2>
+           
+    {% csrf_token %}
+
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" placeholder="Enter your name" required>
+
+    <label for="dob">Date of Birth</label>
+    <input type="date" name="dob" id="dob" required>
+
+    <label for="gender">Gender</label>
+    <select name="gender" id="gender" required>
+        <option value="">--Select--</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>  
+        <option value="Other">Other</option>
+    </select>
+
+    <label for="place">Place</label>
+    <select name="place" id="place" required>
+        <option value="">--Select--</option>
+        <option value="Madurai">Madurai</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Coimbatore">Coimbatore</option>
+        <option value="Thiruchirapalli">Thiruchirapalli</option>
+        <option value="Cuddalore">Cuddalore</option>
+        <option value="Salem">Salem</option>
+        <option value="Thanjavur">Thanjavur</option>
+        <option value="Thirunelvelli">Thirunelvelli</option>
+    </select>
+
+    <fieldset id="qualification">
+        <legend>Qualification</legend>
+        <input type="checkbox" name="qualification" value="SSLC"> SSLC
+        <input type="checkbox" name="qualification" value="HSC"> HSC
+        <input type="checkbox" name="qualification" value="UG"> Bachelor's
+        <input type="checkbox" name="qualification" value="PG"> Master's
+        <input type="checkbox" name="qualification" value="Working Professional"> Working Professional
+    </fieldset>
+
+    <label for="experience">Years of Experience</label>
+    <input type="number" name="experience" id="experience" placeholder="Enter your years of experience">
+
+    <label for="about_you">About You</label>
+    <textarea name="about_you" id="about_you" rows="5" cols="30" placeholder="Type your message here"></textarea>
+
+    <input type="submit" id="form-btn" value="Submit">
+</form>
+
+    {% if messages %}
+    {% for message in messages %}
+      <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User_Login</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+    
+</head>
+
+<body>
+    <section id="login">
+        <div id="container-fluid">
+            <form action="{% url 'login' %}" method="post" id="loginform">
+
+              {% csrf_token %}
+              
+              <h2>Login</h2>
+
+                <label for="usernameinput">User name</label>
+                <input type="text" id="usernameinput" name="username" placeholder="Enter your username" required>
+
+                <label for="password">password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <input type="submit" id="login-btn" value="Login" required>
+            </form>
+
+            {% if messages %}
+            {% for message in messages %}
+              <p style="color:red;">{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+    </section>
+
+
+
+    
+    <!-- <script>
+        document.getElementById("loginform").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("usernameinput").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "Admin" && password === "Admin@connect123") {
+        window.location.href = "app_form.html";
+      } else {
+        alert("Invalid username or password!");
+      }
+    });
+    </script> -->
+</body>
+</html>

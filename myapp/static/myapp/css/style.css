@@ -1,0 +1,192 @@
+
+/* login page */
+
+#login{
+    background-color: #f0f0f0;
+    padding: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 300px;
+    margin: auto;
+    background-image: url("../images/sign2.jpg");
+    font-family: 'Poppins', sans-serif;
+}
+
+#usernameinput{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#password{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#login-btn {
+    width: 50%;
+    padding: 10px 20px;
+    margin: 20px auto;
+    border: 1px solid white;
+    border-radius: 5px;
+    align-items: center;
+    background-color:rgb(51, 92, 167);
+    color: white;
+    display: flex;
+    text-align: center;
+    font-size: 16px;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#login-btn:hover {
+    background-color: blue;
+    border: 1px solid black;
+    color: black;
+
+}
+
+#form-btn {
+    background-color: rgb(51, 92, 167);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+}
+
+#form-btn:hover {
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+}
+
+@media screen and (max-width: 600px) {
+    #login {
+        width: 90%;
+        padding: 20px;
+    }
+    #usernameinput, #password, #button {
+        width: 100%;
+    }
+    
+}
+
+/* app_form page */
+
+#appform {
+    width: 50%;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    background-image: url("../images/gallery\ \(5\).jpg");
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#appform label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#appform input[type="text"],
+#appform input[type="number"],
+#appform select,
+#appform textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#appform fieldset {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+#appform input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+#Qualification label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+#button{
+    background-color: rgb(51, 92, 167);
+    border: 1px solid black;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#button:hover {
+    background-color: transparent;
+}
+
+@media (max-width: 600px) {
+    #appform {
+        width: 90%;
+    }
+    #appform input[type="text"],
+    #appform input[type="number"],
+    #appform select,
+    #appform textarea {
+        width: 100%;
+    }
+}
+
+.table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+th {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 10px;
+}
+td:nth-child(even) {
+    background-color: #f2f2f2;
+}
+td:nth-child(odd) {
+    background-color: #ffffff;
+}
+td:hover {
+    background-color: #716b6b;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+    margin: 10px;
+    padding: 30px;
+}

@@ -1,57 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User_Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User_Login</title>
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
-    
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}" />
+
+  <!-- Bootstrap CSS for responsiveness and styling -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      /* Background image with overlay */
+      /* background: 
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("{% static 'myapp/images/sign2.jpg.jpg' %}") no-repeat center center fixed; */
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      color: #fff;
+    }
+
+    #login {
+      background: rgba(255, 255, 255, 0.95);
+      background-image: url('{% static "myapp/images/sign2.jpg" %}');
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+      color: #333;
+    }
+
+    #login h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: #0d6efd;
+      letter-spacing: 2px;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 15px;
+      display: block;
+      color: #444;
+    }
+
+    input[type='text'],
+    input[type='password'] {
+      width: 100%;
+      padding: 12px 15px;
+      margin-top: 8px;
+      border-radius: 10px;
+      border: 1.5px solid #ccc;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type='text']:focus,
+    input[type='password']:focus {
+      border-color: #0d6efd;
+      outline: none;
+      box-shadow: 0 0 8px rgba(13, 110, 253, 0.3);
+    }
+
+    #login-btn {
+      margin-top: 30px;
+      width: 100%;
+      padding: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+      background-color: #0d6efd;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #login-btn:hover {
+      background-color: #084cd9;
+    }
+
+    /* Messages styling */
+    .messages p {
+      margin-top: 20px;
+      padding: 12px 15px;
+      background-color: #f8d7da;
+      color: #842029;
+      border-radius: 8px;
+      border: 1px solid #f5c2c7;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      #login {
+        padding: 30px 20px;
+      }
+      #login h2 {
+        font-size: 1.5rem;
+      }
+      input[type='text'],
+      input[type='password'] {
+        font-size: 0.95rem;
+      }
+      #login-btn {
+        font-size: 1rem;
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <section id="login">
-        <div id="container-fluid">
-            <form action="{% url 'login' %}" method="post" id="loginform">
+  <section id="login" class="shadow-sm">
+    <div id="container-fluid">
+      <form action="{% url 'login' %}" method="post" id="loginform" novalidate>
+        {% csrf_token %}
 
-              {% csrf_token %}
-              
-              <h2>Login</h2>
+        <h2>Login</h2>
 
-                <label for="usernameinput">User name</label>
-                <input type="text" id="usernameinput" name="username" placeholder="Enter your username" required>
+        <label for="usernameinput">User  name</label>
+        <input
+          type="text"
+          id="usernameinput"
+          name="username"
+          placeholder="Enter your username"
+          required
+          autocomplete="username"
+        />
 
-                <label for="password">password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+          autocomplete="current-password"
+        />
 
-                <input type="submit" id="login-btn" value="Login" required>
-            </form>
+        <input type="submit" id="login-btn" value="Login" />
+      </form>
 
-            {% if messages %}
-            {% for message in messages %}
-              <p style="color:red;">{{ message }}</p>
-            {% endfor %}
-          {% endif %}
-        </div>
-    </section>
+      <div class="messages">
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </section>
 
+  <!-- Optional: Add dynamic JS for real-time validation and show/hide password -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('loginform');
+      const usernameInput = form.username;
+      const passwordInput = form.password;
 
+      // Real-time validation border color
+      [usernameInput, passwordInput].forEach((input) => {
+        input.addEventListener('input', () => {
+          if (input.validity.valid) {
+            input.style.borderColor = 'green';
+          } else {
+            input.style.borderColor = 'red';
+          }
+        });
+      });
 
-    
-    <!-- <script>
-        document.getElementById("loginform").addEventListener("submit", function (e) {
-      e.preventDefault();
+      // Optional: Show/hide password toggle button
+      const toggleBtn = document.createElement('button');
+      toggleBtn.type = 'button';
+      toggleBtn.textContent = 'Show';
+      toggleBtn.style.marginLeft = '10px';
+      toggleBtn.style.padding = '5px 10px';
+      toggleBtn.style.fontSize = '0.9rem';
+      toggleBtn.style.cursor = 'pointer';
+      passwordInput.insertAdjacentElement('afterend', toggleBtn);
 
-      const username = document.getElementById("usernameinput").value;
-      const password = document.getElementById("password").value;
+      toggleBtn.addEventListener('click', () => {
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          toggleBtn.textContent = 'Hide';
+        } else {
+          passwordInput.type = 'password';
+          toggleBtn.textContent = 'Show';
+        }
+      });
 
-      if (username === "Admin" && password === "Admin@connect123") {
-        window.location.href = "app_form.html";
-      } else {
-        alert("Invalid username or password!");
-      }
+      // Optional: Prevent form submission if invalid
+      form.addEventListener('submit', (e) => {
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          alert('Please fill in all fields correctly.');
+        }
+      });
     });
-    </script> -->
+  </script>
+
+  <!-- Bootstrap JS Bundle (Popper + Bootstrap JS) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
 </body>
 </html>
